@@ -12,4 +12,4 @@ select line_number, col001, col002, col003, col004, col005 , col006, col007, col
 ------- Dados analisados------
 -- Relatório Clássico 
 -- tipo tabela/view
--- Nome da Tabela = J7_CLIENTE_DATA_TEMP_FILE
+-- Nome da Tabela = CLIENTE_DATA_TEMP_FILE
