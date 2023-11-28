@@ -8,3 +8,8 @@ select line_number, col001, col002, col003, col004, col005 , col006, col007, col
                   p_store_profile_to_collection => 'FILE_PARSER_COLLECTION',
                   p_file_name                   => f.filename ) ) p
  where f.name = :P19_FILE and col001 is not null and col001 is not null and col002 is not null and col003 is not null and col004 is not null and col005 is not null and col006 is not null
+--- depois do insert do dado analizado 
+------- Dados analisados------
+-- Relatório Clássico 
+-- tipo tabela/view
+-- Nome da Tabela = J7_CLIENTE_DATA_TEMP_FILE
