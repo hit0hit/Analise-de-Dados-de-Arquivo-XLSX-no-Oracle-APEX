@@ -1,4 +1,49 @@
-# Importa-o-de-Dados-no-ORACLE-APEX
+# Análise de Dados de Arquivo XLSX no Oracle APEX
+
+Este script SQL realiza uma consulta para analisar dados de um arquivo XLSX armazenado temporariamente no Oracle APEX. Os dados são extraídos usando a função `apex_data_parser.parse` e, em seguida, são selecionadas colunas específicas da tabela resultante.
+
+### Consulta SQL
+
+```sql
+SELECT line_number,
+       col001,
+       col002,
+       col003,
+       col004,
+       col005,
+       col006,
+       col007,
+       col008,
+       col009,
+       col010,
+       col011,
+       col012,
+       col013
+FROM apex_application_temp_files f, 
+     TABLE(apex_data_parser.parse(
+             p_content                     => f.blob_content,
+             p_add_headers_row             => 'Y',
+             p_xlsx_sheet_name             => :P19_XLSX_WORKSHEET,
+             p_max_rows                    => 500,
+             p_store_profile_to_collection => 'FILE_PARSER_COLLECTION',
+             p_file_name                   => f.filename
+          )) p
+WHERE f.name = :P19_FILE 
+  AND col001 IS NOT NULL 
+  AND col002 IS NOT NULL 
+  AND col003 IS NOT NULL 
+  AND col004 IS NOT NULL 
+  AND col005 IS NOT NULL 
+  AND col006 IS NOT NULL;
+```
+## Dados Analisados
+Relatório Clássico<br>
+Tipo: Tabela/View<br>
+Nome da Tabela: CLIENTE_DATA_TEMP_FILE<br>
+## Processo Após a Análise
+Após a análise desses dados, há um processo que insere os dados analisados em alguma tabela, possivelmente a tabela CLIENTE_DATA_TEMP_FILE.
+
+# PL/SQL, operações de inserção e atualização
 Esse código PL/SQL está realizando operações de inserção e atualização em duas tabelas, CLIENTE e CLIENTE_INFORMACAES, com base em dados provenientes da tabela CLIENTE_DATA_TEMP_FILE. Vamos analisar cada bloco:
 
 Bloco 1 (Inserção de novos clientes):
